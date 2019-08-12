@@ -26,14 +26,14 @@ https://scikit-image.org/docs/dev/api/skimage.filters.html#skimage.filters.schar
 
 
 
-With this features a Supervise learning model was created using 6000 images (half blurry, half clear). The process of this model creation is in the file jupyter notebook offocus_model.ipynb
+With this features a Supervise learning model was created using 6000 images (half blurry, half clear). The process of this model creation is in the jupyter notebook file offocus_model.ipynb
 
-**SERVER API
+**SERVER API**
 
 A AWS instance is running a Gunicorn server with the model, a client can request a prediction using a JSON format
 
 
-**NEXT STEPS:
+**NEXT STEPS:**
 1. windows version in C#
 2. Include more range of Cameras brands (now only works on 3xlogic-HIK)
 3. Error management.
