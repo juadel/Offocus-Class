@@ -18,14 +18,16 @@ class Camera :
             return image
 
     def cam_status(self):
+        print("tryin ip: %s" %(self.ip) )
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(0.1)
         try:
-            socke.connect((self.ip,544))
+            sock.connect((self.ip,554))
             return True
         except:
             return False
 
+   
 
 
 
