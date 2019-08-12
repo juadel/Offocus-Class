@@ -20,9 +20,9 @@ class Shoot:
 
     def Get_Parameters(self):
         if len(self.img.shape) == 3:
-            self.img =rgb2gray(self.img)
-        self.Variance = variance(laplace(self.img, ksize=3))
-        self.Noise = estimate_sigma(self.img)
+            gray =rgb2gray(self.img)
+        self.Variance = variance(laplace(gray, ksize=3))
+        self.Noise = estimate_sigma(gray)
 
 
     def CheckBlurry(self):
@@ -36,9 +36,9 @@ class Shoot:
         self.clear_state = text
         
     
-    def PrintShoot(self):
+    def PrintShoot(self,text="Image"):
         cv2.putText(self.img, "{}: {:.2f}".format(self.clear_state, self.Variance),(10,31),cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,256),3)
-        cv2.imshow("Image", self.img)
-        cv2.waitkey(0)
+        cv2.imshow(text , self.img)
+        cv2.waitKey(0)
         cv2.destroyAllWindows()
         
