@@ -1,6 +1,6 @@
 **INTRODUCTION**
 
-Within time, cameras can become out of focus due to a different reasons. This program allows user to scan for IP cameras (over an IP range) and determine the shoot image state, what could be “CLEAR” or “BLURRY”. It also provides an alternative method to check images located in a folder.
+Within time, CCTV cameras can become out of focus due to a different reasons. This program allows user to scan for IP cameras (over an IP range) and determine the shoot image state, what could be “CLEAR” or “BLURRY”. It also provides an alternative method to check images located in a folder.
 
 The user have the possibility to  decide if he wants to see the image or just read a final report.
 
