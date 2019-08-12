@@ -22,7 +22,7 @@ def Main_Lan(ip0,ip1,password,ckb):
             shoot.CheckBlurry()
             temp_report = [cam_test.ip,shoot.clear_state]
             if ckb :
-                shoot.PrintShoot()
+                shoot.PrintShoot(cam_test.ip)
             
             report.append(temp_report)
         
