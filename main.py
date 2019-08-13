@@ -1,8 +1,11 @@
 import cameras
 import Shoot
 from tkinter import *
+from tkinter import filedialog
 import ipaddress
 import pandas as pd
+import cv2
+import os
 
 
 
@@ -26,9 +29,26 @@ def Main_Lan(ip0,ip1,password,ckb):
             
             report.append(temp_report)
         
-    labels = ["IP","Status"]
-    final_rep = pd.DataFrame(report, columns = labels)
-    prinreport(final_rep)
+    prinreport(WriteReport(["IP","Status"],report))
+
+def main_folder(path,chkb):
+    report = []
+    for image in os.listdir(path):
+        img_path=os.path.join(path,image)
+        shoot =Shoot.Shoot(cv2.imread(img_path))
+        shoot.Get_Parameters()
+        shoot.CheckBlurry()
+        temp_report =[image,shoot.clear_state]
+        if chkb:
+            shoot.PrintShoot(image)
+        report.append(temp_report)
+    prinreport(WriteReport(["File name","Status"],report))
+
+
+def WriteReport(labels,temp_report):
+    report = pd.DataFrame(temp_report, columns=labels)
+    return report
+
 
 def prinreport(report):
     rw = Tk()
@@ -39,11 +59,8 @@ def prinreport(report):
         def write(self,s):
             result.insert(END,s)
     sys.stdout = Printtot1()
-    print(report)
+    print(report, flush=True)
     mainloop()
-
-
-
 
 
 window = Tk()
@@ -105,7 +122,7 @@ def clicked_2():
 
 def clicked_3():
 	chk_st=chk_state.get()
-	main_folder(filename,chk_st,model)
+	main_folder(filename,chk_st)
 
 
 
@@ -115,8 +132,5 @@ btn_2 = Button(btm_frame, text = "Browse", command= clicked_2)
 btn_2.grid(column = 2 , row = 7 ) 
 btn_3 = Button(btm_frame, text="Scan Folder", command=clicked_3)
 btn_3.grid(column = 3 , row = 7 ) 
-
-
-
 
 window.mainloop()
