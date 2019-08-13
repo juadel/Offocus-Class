@@ -9,7 +9,7 @@ from features import FEATURES
 app = Flask(__name__)
 app.secret_key = 'juancho8'
 # Load the pickled model.
-MODEL = load("model_20190810.ml")
+MODEL = load("model_v1.joblib")
 
 @app.route('/api', methods=['GET'])
 def api():
