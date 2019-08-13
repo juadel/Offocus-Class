@@ -39,6 +39,7 @@ class Shoot:
     
     def PrintShoot(self,text="Image"):
         cv2.putText(self.img, "{}".format(self.clear_state),(10,31),cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0,0,256),3)
+        cv2.namedWindow('image', cv2.WINDOW_AUTOSIZE)
         cv2.imshow(text , self.img)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
