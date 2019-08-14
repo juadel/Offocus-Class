@@ -38,4 +38,4 @@ A AWS instance is running a Gunicorn server with the model, a client can request
 2. Include more range of Cameras brands (now only works on 3xlogic-HIK)
 3. Error management.
 4. increase model accuracy.
-5. Model using reinforcement learning
+5. Model using deep Learning
