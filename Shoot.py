@@ -1,8 +1,9 @@
 from  skimage.color import rgb2gray
 from skimage.restoration import estimate_sigma
 from scipy.ndimage import variance
-from skimage.filters import laplace 
+from skimage.filters import laplace, scharr
 from skimage import io 
+import numpy as np
 import requests
 import cv2
 
@@ -13,7 +14,10 @@ class Shoot:
        self.img = image 
        self.clear_state = None
        self.Variance = None
+       self.MaxVariance =None
+       self.Scharr = None
        self.Noise = None
+
     
     def __str__(self):
        print("creates a Offocus object image to perform Variance and noise analysis ") 
@@ -24,16 +28,22 @@ class Shoot:
             copy_img =rgb2gray(self.img)
         
         self.Variance = variance(laplace(copy_img, ksize=3))
+        self.MaxVariance = np.amax(laplace(copy_img, ksize=3))
         self.Noise = estimate_sigma(copy_img)
+        self.Scharr = variance(scharr(copy_img))
+        
+        print(self.Variance,self.MaxVariance,self.Scharr, self.Noise)
+
 
 
     def CheckBlurry(self):
-        values = {"Variance" : self.Variance, "Noise": self.Noise}
+        values = {"Variance" : self.Variance,"Max Variance" :self.MaxVariance, "Scharr" : self.Scharr, "Noise": self.Noise}
         r = requests.get('http://ec2-35-182-106-153.ca-central-1.compute.amazonaws.com:5000/api', json=values)
         json_response = r.json()
-        text ="CLEAR"
-        if json_response["ESTIMATE"]==1:
-            text = "BLURRY"
+        text ="100% CLEAR"
+        if sum(json_response["ESTIMATE"])!=0:
+            percentage=sum(json_response["ESTIMATE"])*25
+            text = "{} % BLURRY".format(percentage)
         self.clear_state = text
         
     
