@@ -1,2 +1,2 @@
 # app/features.py
-FEATURES = ['Variance', 'Noise']
+FEATURES = ['Variance','Max Variance','Scharr', 'Noise']
