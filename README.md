@@ -4,7 +4,6 @@ Within time, CCTV cameras can become out of focus due to a different reasons. Th
 
 The user have the possibility to  decide if he wants to see the image or just read a final report.
 
-In this repository (as part of my learning process) I am including the program using classes. 
 
 **HOW IT WORKS**
 
