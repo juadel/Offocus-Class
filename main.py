@@ -27,6 +27,8 @@ def Main_Lan(ip0,ip1,password,ckb):
             if ckb :
                 shoot.PrintShoot(cam_test.ip)
             
+           
+            
             report.append(temp_report)
         
     prinreport(WriteReport(["IP","Status"],report))

@@ -16,14 +16,18 @@ class Camera :
         if vidcap.isOpened():
             success, image = vidcap.read()
             return image
+        
 
     def cam_status(self):
         print("tryin ip: %s" %(self.ip) )
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.settimeout(0.1)
+        sock.settimeout(0.2)
+        
         try:
             sock.connect((self.ip,554))
-            return True
+            vidcap = cv2.VideoCapture("rtsp://%s:%s@%s:554/%s" %(self.user, self.password,self.ip, self.url))
+            if vidcap.isOpened():
+                return True
         except:
             return False
 
